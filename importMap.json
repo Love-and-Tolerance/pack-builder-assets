@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "zod": "npm:zod@3.19.1",
+    "zod-to-json-schema": "npm:zod-to-json-schema@3.19.3",
+
+    "path": "https://deno.land/std@0.167.0/path/mod.ts",
+    "console_colors": "https://deno.land/x/console_colors@v0.0.2/mod.ts",
+    "run_simple": "https://deno.land/x/run_simple@1.1.0/mod.ts"
+  }
+}

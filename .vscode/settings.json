@@ -1,0 +1,21 @@
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.formatOnSave": true,
+    "editor.rulers": [80]
+  },
+  "deno.enable": true,
+  "deno.lint": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["/assets/java.json"],
+      "schema": false,
+      "url": "/schemas/json/java.json"
+    },
+    {
+      "fileMatch": ["/assets/bedrock.json"],
+      "schema": false,
+      "url": "/schemas/json/bedrock.json"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "templates": {
+      "type": "object",
+      "properties": {
+        "asset_url": {
+          "type": "string"
+        }
+      },
+      "required": ["asset_url"],
+      "additionalProperties": false
+    },
+    "repos": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "object",
+          "properties": {
+            "mc_versions": {
+              "type": "string",
+              "description": "Current Minecraft version"
+            },
+            "pack_format": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "filename": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "mc_versions",
+            "pack_format",
+            "tag",
+            "version",
+            "filename",
+            "url"
+          ],
+          "additionalProperties": false,
+          "description": "Base repo information"
+        },
+        "addons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "filename", "url"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["base", "addons"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["templates", "repos"],
+  "additionalProperties": false
+}

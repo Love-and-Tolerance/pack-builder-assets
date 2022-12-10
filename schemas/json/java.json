@@ -1,0 +1,264 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "templates": {
+      "type": "object",
+      "properties": {
+        "zips_path": {
+          "type": "string"
+        },
+        "base_zip_name": {
+          "type": "string"
+        },
+        "exclusive_addon_zip_name": {
+          "type": "string"
+        },
+        "normal_addon_zip_name": {
+          "type": "string"
+        },
+        "mod_addon_zip_name": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "zips_path",
+        "base_zip_name",
+        "exclusive_addon_zip_name",
+        "normal_addon_zip_name",
+        "mod_addon_zip_name",
+        "filename"
+      ],
+      "additionalProperties": false
+    },
+    "repos": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "object",
+          "properties": {
+            "mc_versions": {
+              "type": "string",
+              "description": "Current Minecraft version"
+            },
+            "pack_format": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": ["mc_versions", "pack_format", "version", "url"],
+          "additionalProperties": false,
+          "description": "Base repo information"
+        },
+        "addons": {
+          "type": "object",
+          "properties": {
+            "exclusive": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Display name"
+                  },
+                  "id_pos": {
+                    "type": "number",
+                    "description": "Position of this addon in selected addons list"
+                  },
+                  "apply_order": {
+                    "type": "number",
+                    "description": "Order in which to apply this addon"
+                  },
+                  "default_variant": {
+                    "type": "string",
+                    "description": "Default (recommended) variant ID"
+                  },
+                  "variants": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "Display name"
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "Internal ID, used in the filename"
+                        },
+                        "image": {
+                          "type": "string",
+                          "description": "Image used as pack.png instead of one from the repo"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "Description displayed instead of one from the repo"
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "GitHub repo URL"
+                        },
+                        "branch": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "trigger": {
+                                    "type": "string",
+                                    "description": "Trigger to select this branch"
+                                  },
+                                  "value": {
+                                    "type": "string",
+                                    "description": "The branch selected"
+                                  }
+                                },
+                                "required": ["trigger", "value"],
+                                "additionalProperties": false
+                              }
+                            }
+                          ],
+                          "description": "Branch used for this variant"
+                        },
+                        "trigger": {
+                          "type": "string",
+                          "description": "Trigger name for conditional branches in other variants applied after this addon"
+                        }
+                      },
+                      "required": ["name", "id"],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "id_pos",
+                  "apply_order",
+                  "default_variant",
+                  "variants"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Addons that can override each other"
+            },
+            "normal": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Display name"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Internal ID, used in the filename"
+                  },
+                  "default_enabled": {
+                    "type": "boolean"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "branch": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/properties/repos/properties/addons/properties/exclusive/items/properties/variants/items/properties/branch/anyOf/0"
+                      },
+                      {
+                        "$ref": "#/properties/repos/properties/addons/properties/exclusive/items/properties/variants/items/properties/branch/anyOf/1"
+                      }
+                    ]
+                  }
+                },
+                "required": ["name", "id", "default_enabled", "url"],
+                "additionalProperties": false
+              },
+              "description": "Normal addons which usually only add new content"
+            },
+            "mods": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Display name"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Internal ID, used in the filename"
+                  },
+                  "default_enabled": {
+                    "type": "boolean"
+                  },
+                  "modloader": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ]
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["name", "url"],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "id",
+                  "default_enabled",
+                  "modloader",
+                  "url",
+                  "links"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Addons adding mods support"
+            }
+          },
+          "required": ["exclusive", "normal", "mods"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["base", "addons"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["templates", "repos"],
+  "additionalProperties": false
+}

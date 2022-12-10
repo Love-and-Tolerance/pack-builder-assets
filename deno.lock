@@ -1,0 +1,26 @@
+{
+  "version": "2",
+  "remote": {
+    "https://deno.land/x/console_colors@v0.0.2/mod.ts": "ea7139db28e3996341d50e19d94edeb41caefaa356864272e5e9c463d287d5af",
+    "https://deno.land/x/run_simple@1.1.0/mod.ts": "107de176c82574d128164e31ad7811a03ef85d67919061eed3b8f3bcecec1885",
+    "https://deno.land/x/run_simple@1.1.0/src/fn.ts": "81dd8fc48e3ad1e82808ce52bc74153f4dd4a522f0982687ec4d1b9d3936f2f3",
+    "https://deno.land/x/run_simple@1.1.0/src/os.ts": "58dd739ee0e24cb9d9f9e89aef37b3aaa872bfbf983eac142969840db6babec5",
+    "https://deno.land/x/run_simple@1.1.0/src/run.ts": "a6f8d6def231711aa528238971ccbd67641eb264a85d4c5d9642a03863866dde"
+  },
+  "npm": {
+    "specifiers": {
+      "zod-to-json-schema@3.19.3": "zod-to-json-schema@3.19.3_zod@3.19.1",
+      "zod@3.19.1": "zod@3.19.1"
+    },
+    "packages": {
+      "zod-to-json-schema@3.19.3_zod@3.19.1": {
+        "integrity": "sha512-ACNhkhhspMy0bb2aGPWiYH4Prp7Xkyz/eWuuR/1+Ql8SO6uhSrWWePQP1XVC/rzVvnQ3r4K35x97THh+VFmc+w==",
+        "dependencies": { "zod": "zod@3.19.1" }
+      },
+      "zod@3.19.1": {
+        "integrity": "sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==",
+        "dependencies": {}
+      }
+    }
+  }
+}
