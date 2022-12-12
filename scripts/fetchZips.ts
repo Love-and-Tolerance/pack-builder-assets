@@ -91,12 +91,12 @@ for (const addon of JAVA_ASSETS.repos.addons.exclusive) {
 console.log("");
 console.info("Processing normal addons ...".blue.text_bold);
 
-for (const addon of JAVA_ASSETS.repos.addons.normal) {
+for (const addon of JAVA_ASSETS.repos.addons.regular) {
   console.log("");
   console.info(`Processing addon "${addon.name}" ...`.blue.text_bold);
 
   const branches = collectBranches(addon.branch);
-  const filenameTemplate = JAVA_ASSETS.templates.normal_addon_zip_name
+  const filenameTemplate = JAVA_ASSETS.templates.regular_addon_zip_name
     .replace("{id}", addon.id);
 
   for (const branch of branches) {

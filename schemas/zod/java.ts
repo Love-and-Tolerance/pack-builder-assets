@@ -45,7 +45,7 @@ const ExclusiveAddonSchema = z.object({
   variants: ExclusiveAddonVariantSchema.array(),
 });
 
-const NormalAddonSchema = z.object({
+const RegularAddonSchema = z.object({
   name: z.string().describe("Display name"),
   id: z.string().describe("Internal ID, used in the filename"),
   default_enabled: z.boolean(),
@@ -70,7 +70,7 @@ export const JavaAssetsSchema = z.object({
     zips_path: z.string(),
     base_zip_name: z.string(),
     exclusive_addon_zip_name: z.string(),
-    normal_addon_zip_name: z.string(),
+    regular_addon_zip_name: z.string(),
     mod_addon_zip_name: z.string(),
     filename: z.string(),
   }),
@@ -79,8 +79,8 @@ export const JavaAssetsSchema = z.object({
     addons: z.object({
       exclusive: ExclusiveAddonSchema.array()
         .describe("Addons that can override each other"),
-      normal: NormalAddonSchema.array()
-        .describe("Normal addons which usually only add new content"),
+      regular: RegularAddonSchema.array()
+        .describe("Regular addons which usually only add new content"),
       mods: ModAddonSchema.array()
         .describe("Addons adding mods support"),
     }),

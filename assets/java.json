@@ -3,7 +3,7 @@
     "zips_path": "assets/zips/java/{name}.zip",
     "base_zip_name": "BASE",
     "exclusive_addon_zip_name": "EXCLUSIVE_ADDON_{id_pos}_{variant}_{branch}",
-    "normal_addon_zip_name": "NORMAL_ADDON_{id}_{branch}",
+    "regular_addon_zip_name": "REGULAR_ADDON_{id}_{branch}",
     "mod_addon_zip_name": "MOD_ADDON_{id}",
     "filename": "L-T_{version}-{ids}.zip"
   },
@@ -109,7 +109,7 @@
           ]
         }
       ],
-      "normal": [
+      "regular": [
         {
           "name": "Connected Textures",
           "id": "ct",

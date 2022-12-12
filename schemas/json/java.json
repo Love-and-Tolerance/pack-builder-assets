@@ -14,7 +14,7 @@
         "exclusive_addon_zip_name": {
           "type": "string"
         },
-        "normal_addon_zip_name": {
+        "regular_addon_zip_name": {
           "type": "string"
         },
         "mod_addon_zip_name": {
@@ -28,7 +28,7 @@
         "zips_path",
         "base_zip_name",
         "exclusive_addon_zip_name",
-        "normal_addon_zip_name",
+        "regular_addon_zip_name",
         "mod_addon_zip_name",
         "filename"
       ],
@@ -154,7 +154,7 @@
               },
               "description": "Addons that can override each other"
             },
-            "normal": {
+            "regular": {
               "type": "array",
               "items": {
                 "type": "object",
@@ -187,7 +187,7 @@
                 "required": ["name", "id", "default_enabled", "url"],
                 "additionalProperties": false
               },
-              "description": "Normal addons which usually only add new content"
+              "description": "Regular addons which usually only add new content"
             },
             "mods": {
               "type": "array",
@@ -251,7 +251,7 @@
               "description": "Addons adding mods support"
             }
           },
-          "required": ["exclusive", "normal", "mods"],
+          "required": ["exclusive", "regular", "mods"],
           "additionalProperties": false
         }
       },
