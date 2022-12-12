@@ -20,7 +20,7 @@
           "name": "Seasonal",
           "id_pos": 1,
           "apply_order": 3,
-          "default_variant": "x",
+          "default_variant": "d",
           "variants": [
             {
               "name": "Summer",
