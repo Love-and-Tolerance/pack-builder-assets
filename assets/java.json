@@ -140,6 +140,12 @@
           "id": "ob",
           "default_enabled": false,
           "url": "https://github.com/Love-and-Tolerance/Ore-Borders"
+        },
+        {
+          "name": "No Crosshair",
+          "id": "nc",
+          "default_enabled": false,
+          "url": "https://github.com/Love-and-Tolerance/No-Crosshair"
         }
       ],
       "mods": [
