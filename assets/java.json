@@ -49,6 +49,7 @@
           "id_pos": 2,
           "apply_order": 2,
           "default_variant": "a",
+          "license": true,
           "variants": [
             { "name": "None", "id": "x" },
             {
@@ -105,6 +106,11 @@
               "name": "Nightmare Night",
               "id": "n",
               "url": "https://github.com/Love-and-Tolerance/Nightmare-Night-Addon"
+            },
+            {
+              "name": "Hearth's Warming",
+              "id": "w",
+              "url": "https://github.com/Love-and-Tolerance/Hearths-Warming-Addon"
             }
           ]
         }
@@ -115,6 +121,27 @@
           "id": "ct",
           "default_enabled": false,
           "url": "https://github.com/Love-and-Tolerance/Optifine-Addon"
+        },
+        {
+          "name": "Villager Skin Pack",
+          "id": "vsp",
+          "license": true,
+          "default_enabled": true,
+          "required_mod_ids": ["mlp"],
+          "minimum_miencraft_version": "1.19.3",
+          "url": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack",
+          "license_variants": [
+            {
+              "name": "Music",
+              "id": "a",
+              "license": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_a/LICENSE"
+            },
+            {
+              "name": "Music",
+              "id": "b",
+              "license": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_b/LICENSE"
+            }
+          ]
         },
         {
           "name": "Classic",
