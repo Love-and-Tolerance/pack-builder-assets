@@ -9,7 +9,9 @@
           "type": "string"
         }
       },
-      "required": ["asset_url"],
+      "required": [
+        "asset_url"
+      ],
       "additionalProperties": false
     },
     "repos": {
@@ -64,15 +66,25 @@
                 "type": "string"
               }
             },
-            "required": ["name", "filename", "url"],
+            "required": [
+              "name",
+              "filename",
+              "url"
+            ],
             "additionalProperties": false
           }
         }
       },
-      "required": ["base", "addons"],
+      "required": [
+        "base",
+        "addons"
+      ],
       "additionalProperties": false
     }
   },
-  "required": ["templates", "repos"],
+  "required": [
+    "templates",
+    "repos"
+  ],
   "additionalProperties": false
 }

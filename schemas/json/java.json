@@ -54,7 +54,12 @@
               "type": "string"
             }
           },
-          "required": ["mc_versions", "pack_format", "version", "url"],
+          "required": [
+            "mc_versions",
+            "pack_format",
+            "version",
+            "url"
+          ],
           "additionalProperties": false,
           "description": "Base repo information"
         },
@@ -126,7 +131,10 @@
                                     "description": "The branch selected"
                                   }
                                 },
-                                "required": ["trigger", "value"],
+                                "required": [
+                                  "trigger",
+                                  "value"
+                                ],
                                 "additionalProperties": false
                               }
                             }
@@ -138,9 +146,43 @@
                           "description": "Trigger name for conditional branches in other variants applied after this addon"
                         }
                       },
-                      "required": ["name", "id"],
+                      "required": [
+                        "name",
+                        "id"
+                      ],
                       "additionalProperties": false
                     }
+                  },
+                  "license": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "trigger": {
+                              "type": "string",
+                              "description": "Trigger to select this license"
+                            },
+                            "value": {
+                              "type": [
+                                "boolean",
+                                "string"
+                              ],
+                              "description": "License path or boolean value to enable copying license from the zip"
+                            }
+                          },
+                          "required": [
+                            "trigger",
+                            "value"
+                          ],
+                          "additionalProperties": false
+                        }
+                      }
+                    ]
                   }
                 },
                 "required": [
@@ -170,6 +212,15 @@
                   "default_enabled": {
                     "type": "boolean"
                   },
+                  "required_mods": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "minimum_minecraft_version": {
+                    "type": "string"
+                  },
                   "url": {
                     "type": "string"
                   },
@@ -182,9 +233,17 @@
                         "$ref": "#/properties/repos/properties/addons/properties/exclusive/items/properties/variants/items/properties/branch/anyOf/1"
                       }
                     ]
+                  },
+                  "license": {
+                    "$ref": "#/properties/repos/properties/addons/properties/exclusive/items/properties/license"
                   }
                 },
-                "required": ["name", "id", "default_enabled", "url"],
+                "required": [
+                  "name",
+                  "id",
+                  "default_enabled",
+                  "url"
+                ],
                 "additionalProperties": false
               },
               "description": "Regular addons which usually only add new content"
@@ -233,7 +292,10 @@
                           "type": "string"
                         }
                       },
-                      "required": ["name", "url"],
+                      "required": [
+                        "name",
+                        "url"
+                      ],
                       "additionalProperties": false
                     }
                   }
@@ -251,14 +313,24 @@
               "description": "Addons adding mods support"
             }
           },
-          "required": ["exclusive", "regular", "mods"],
+          "required": [
+            "exclusive",
+            "regular",
+            "mods"
+          ],
           "additionalProperties": false
         }
       },
-      "required": ["base", "addons"],
+      "required": [
+        "base",
+        "addons"
+      ],
       "additionalProperties": false
     }
   },
-  "required": ["templates", "repos"],
+  "required": [
+    "templates",
+    "repos"
+  ],
   "additionalProperties": false
 }

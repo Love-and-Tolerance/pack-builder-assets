@@ -17,6 +17,17 @@ const ConditionalBranchSchema = z.union([
   }).array(),
 ]);
 
+const ConditionalLicenseSchema = z.union([
+  z.boolean(),
+  z.object({
+    trigger: z.string().describe("Trigger to select this license"),
+    value: z.union([z.boolean(), z.string()])
+      .describe(
+        "License path or boolean value to enable copying license from the zip",
+      ),
+  }).array(),
+]);
+
 const ExclusiveAddonVariantSchema = z.object({
   name: z.string().describe("Display name"),
   id: z.string().describe("Internal ID, used in the filename"),
@@ -43,14 +54,18 @@ const ExclusiveAddonSchema = z.object({
   apply_order: z.number().describe("Order in which to apply this addon"),
   default_variant: z.string().describe("Default (recommended) variant ID"),
   variants: ExclusiveAddonVariantSchema.array(),
+  license: ConditionalLicenseSchema.optional(),
 });
 
 const RegularAddonSchema = z.object({
   name: z.string().describe("Display name"),
   id: z.string().describe("Internal ID, used in the filename"),
   default_enabled: z.boolean(),
+  required_mods: z.string().array().optional(),
+  minimum_minecraft_version: z.string().optional(),
   url: z.string(),
   branch: ConditionalBranchSchema.optional(),
+  license: ConditionalLicenseSchema.optional(),
 });
 
 const ModAddonSchema = z.object({
