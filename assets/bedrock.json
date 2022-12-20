@@ -46,6 +46,11 @@
         "name": "Progress Bar Destroy Block Addon",
         "filename": "L-T_{version}-Progress-Bar-Destroy-Block.mcpack",
         "url": "https://github.com/Love-and-Tolerance/Progress-Bar-Destroy-Block-Bedrock"
+      },
+      {
+        "name": "No Crosshair Addon",
+        "filename": "L-T_{version}-No-Crosshair.mcpack",
+        "url": "https://github.com/Love-and-Tolerance/No-Crosshair-Bedrock"
       }
     ]
   }
