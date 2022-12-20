@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export type ConditionalBranch = z.infer<typeof ConditionalBranchSchema>;
+export type ConditionalLicense = z.infer<typeof ConditionalLicenseSchema>;
 
 const JavaBaseRepoSchema = z.object({
   mc_versions: z.string().describe("Current Minecraft version"),

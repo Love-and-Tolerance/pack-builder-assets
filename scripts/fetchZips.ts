@@ -5,6 +5,7 @@ import { clean } from "./tasks/clean.ts";
 import { initRepo } from "./tasks/initRepo.ts";
 import { collectBranches } from "./utils/collectBranches.ts";
 import { compress } from "./utils/compress.ts";
+import { getAddonFiles } from "./utils/getAddonFiles.ts";
 
 interface ZipInfo {
   name: string;
@@ -81,9 +82,11 @@ for (const addon of JAVA_ASSETS.repos.addons.exclusive) {
       .replace("{id_pos}", addon.id_pos.toString())
       .replace("{variant}", variant.id);
 
+    const files = getAddonFiles(addon.license);
+
     for (const branch of branches) {
       const filename = filenameTemplate.replace("{branch}", branch);
-      await prepareRepo(filename, url, branch, "assets");
+      await prepareRepo(filename, url, branch, files);
     }
   }
 }
@@ -99,9 +102,11 @@ for (const addon of JAVA_ASSETS.repos.addons.regular) {
   const filenameTemplate = JAVA_ASSETS.templates.regular_addon_zip_name
     .replace("{id}", addon.id);
 
+  const files = getAddonFiles(addon.license);
+
   for (const branch of branches) {
     const filename = filenameTemplate.replace("{branch}", branch);
-    await prepareRepo(filename, addon.url, branch, "assets");
+    await prepareRepo(filename, addon.url, branch, files);
   }
 }
 
