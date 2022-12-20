@@ -49,20 +49,22 @@
           "id_pos": 2,
           "apply_order": 2,
           "default_variant": "a",
-          "license": true,
           "variants": [
             { "name": "None", "id": "x" },
             {
               "name": "Side A",
               "id": "a",
-              "url": "https://github.com/Love-and-Tolerance/Music-side-A"
+              "url": "https://github.com/Love-and-Tolerance/Music-side-A",
+              "trigger": "music-a"
             },
             {
               "name": "Side B",
               "id": "b",
-              "url": "https://github.com/Love-and-Tolerance/Music-side-B"
+              "url": "https://github.com/Love-and-Tolerance/Music-side-B",
+              "trigger": "music-b"
             }
-          ]
+          ],
+          "license": true
         },
         {
           "name": "3D models",
@@ -125,21 +127,22 @@
         {
           "name": "Villager Skin Pack",
           "id": "vsp",
-          "license": true,
           "default_enabled": true,
-          "required_mod_ids": ["mlp"],
-          "minimum_miencraft_version": "1.19.3",
+          "required_mods": ["mlp"],
+          "minimum_minecraft_version": "1.19.3",
           "url": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack",
-          "license_variants": [
+          "license": [
             {
-              "name": "Music",
-              "id": "a",
-              "license": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_a/LICENSE"
+              "trigger": "music-a",
+              "value": "license_variants/music_side_a/LICENSE"
             },
             {
-              "name": "Music",
-              "id": "b",
-              "license": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_b/LICENSE"
+              "trigger": "music-b",
+              "value": "license_variants/music_side_b/LICENSE"
+            },
+            {
+              "trigger": "DEFAULT",
+              "value": true
             }
           ]
         },
