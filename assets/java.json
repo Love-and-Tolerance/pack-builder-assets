@@ -134,11 +134,11 @@
           "license": [
             {
               "trigger": "music-a",
-              "value": "license_variants/music_side_a/LICENSE"
+              "value": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_a/LICENSE"
             },
             {
               "trigger": "music-b",
-              "value": "license_variants/music_side_b/LICENSE"
+              "value": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack/raw/mane/license_variants/music_side_b/LICENSE"
             },
             {
               "trigger": "DEFAULT",
