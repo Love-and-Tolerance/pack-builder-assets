@@ -1,12 +1,21 @@
+import { ZodTypeAny } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import { BedrockAssetsSchema } from "../schemas/zod/bedrock.ts";
+import {
+  DowngradesSchema,
+  FormatDowngradeSchema,
+} from "../schemas/zod/downgrades.ts";
 import { JavaAssetsSchema } from "../schemas/zod/java.ts";
 
-const $javaAssets = zodToJsonSchema(JavaAssetsSchema);
-const $bedrockAssets = zodToJsonSchema(BedrockAssetsSchema);
+function processSchema(path: string, zodSchema: ZodTypeAny): void {
+  const jsonSchema = zodToJsonSchema(zodSchema);
+  const jsonSchemaString = JSON.stringify(jsonSchema, null, 2);
 
-const $javaAssetsString = JSON.stringify($javaAssets, null, 2);
-const $bedrockAssetsString = JSON.stringify($bedrockAssets, null, 2);
+  Deno.writeTextFileSync(path, jsonSchemaString);
+}
 
-Deno.writeTextFileSync("schemas/json/java.json", $javaAssetsString);
-Deno.writeTextFileSync("schemas/json/bedrock.json", $bedrockAssetsString);
+processSchema("schemas/json/java.json", JavaAssetsSchema);
+processSchema("schemas/json/bedrock.json", BedrockAssetsSchema);
+
+processSchema("schemas/json/downgrades.json", DowngradesSchema);
+processSchema("schemas/json/format-downgrade.json", FormatDowngradeSchema);

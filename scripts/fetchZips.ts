@@ -6,6 +6,7 @@ import { initRepo } from "./tasks/initRepo.ts";
 import { collectBranches } from "./utils/collectBranches.ts";
 import { compress } from "./utils/compress.ts";
 import { getAddonFiles } from "./utils/getAddonFiles.ts";
+import { readJson } from "./utils/json.ts";
 
 interface ZipInfo {
   name: string;
@@ -21,11 +22,10 @@ if (isProduction) {
   console.warn(msg.yellow.text_bold);
 }
 
-const JAVA_ASSETS = (() => {
-  const file = Deno.readTextFileSync("assets/java.json");
-  const json = JSON.parse(file);
-  return JavaAssetsSchema.parse(json);
-})();
+console.log("");
+console.info("Reading json files ...".blue.text_bold);
+
+const JAVA_ASSETS = readJson("assets/java.json", JavaAssetsSchema);
 
 const ZIPS_DIR = JAVA_ASSETS.templates.zips_path.replace("{name}.zip", "");
 const REPOS_DIR = ".temp/repos";

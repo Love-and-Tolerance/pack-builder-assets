@@ -1,0 +1,31 @@
+{
+  "langs": {
+    "*": {
+      "remove": [
+        "item.minecraft.ender_dragon_spawn_egg",
+        "item.minecraft.wither_spawn_egg",
+        "item.minecraft.snow_golem_spawn_egg",
+        "item.minecraft.iron_golem_spawn_egg"
+      ]
+    }
+  },
+  "files": {
+    "copy": true,
+    "move": [
+      {
+        "from": [
+          "assets/minecraft/textures/entity/player/slim/alex.png",
+          "assets/minecraft/textures/entity/player/wide/steve.png"
+        ],
+        "to": "assets/minecraft/textures/entity/"
+      }
+    ],
+    "remove": [
+      "assets/minecraft/{blockstates,{textures,models}/block}/chiseled_bookshelf*",
+      "assets/minecraft/textures/{gui/hanging_signs,entity/signs/hanging}/",
+      "assets/minecraft/textures/entity/player/",
+      "assets/minecraft/textures/item/{bundle*,bamboo_*,*_hanging_sign}.png",
+      "assets/minecraft/textures/block/{bamboo_{door*,fence*,mosaic,planks,trapdoor,block*},stripped_bamboo*}.png"
+    ]
+  }
+}

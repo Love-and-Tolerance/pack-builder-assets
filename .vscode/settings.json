@@ -16,6 +16,16 @@
       "fileMatch": ["/assets/bedrock.json"],
       "schema": false,
       "url": "/schemas/json/bedrock.json"
+    },
+    {
+      "fileMatch": ["/assets/downgrades/{java,bedrock}.json"],
+      "schema": false,
+      "url": "/schemas/json/downgrades.json"
+    },
+    {
+      "fileMatch": ["/assets/downgrades/format-*.json"],
+      "schema": false,
+      "url": "/schemas/json/format-downgrade.json"
     }
   ]
 }

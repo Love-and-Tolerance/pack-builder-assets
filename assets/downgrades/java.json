@@ -1,0 +1,13 @@
+{
+  "templates": {
+    "format_name": "format-{version}",
+    "format_path": "assets/downgrades/{name}.json",
+    "zips_path": "assets/downgrades/zips/{name}.zip"
+  },
+  "pack_formats": {
+    "versions": ["9"]
+  },
+  "version_names": {
+    "9": "1.19 - 1.19.2"
+  }
+}
