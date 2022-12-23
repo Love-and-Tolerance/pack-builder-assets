@@ -5,13 +5,13 @@
     "exclusive_addon_zip_name": "EXCLUSIVE_ADDON_{id_pos}_{variant}_{branch}",
     "regular_addon_zip_name": "REGULAR_ADDON_{id}_{branch}",
     "mod_addon_zip_name": "MOD_ADDON_{id}",
-    "filename": "L-T_{version}-{ids}.zip"
+    "filename": "L-T_{version}-format.{format}-{ids}.zip"
   },
   "repos": {
     "base": {
       "mc_versions": "1.19.3",
       "pack_format": "12",
-      "version": "1.3.0-format.12",
+      "version": "1.3.0",
       "url": "https://github.com/Love-and-Tolerance/Love-and-Tolerance"
     },
     "addons": {
