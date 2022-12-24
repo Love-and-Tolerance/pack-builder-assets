@@ -56,6 +56,7 @@ await prepareRepo("BASE", JAVA_ASSETS.repos.base.url, "HEAD", [
   "LICENSE",
   "pack.png",
   "pack.mcmeta",
+  "README.md",
 ]);
 
 console.log("");
