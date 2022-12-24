@@ -5,9 +5,9 @@
   "repos": {
     "base": {
       "mc_versions": "1.19",
-      "pack_format": "9",
-      "tag": "1.2.0",
-      "version": "1.2.0-bedrock",
+      "pack_format": "2",
+      "tag": "1.3.0",
+      "version": "1.3.0-bedrock",
       "filename": "L-T_{version}.mcpack",
       "url": "https://github.com/Love-and-Tolerance/Love-and-Tolerance-Bedrock"
     },
