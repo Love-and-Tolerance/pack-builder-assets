@@ -29,7 +29,17 @@ const ConditionalLicenseSchema = z.union([
   }).array(),
 ]);
 
-const ExclusiveAddonVariantSchema = z.object({
+const AddonLinkSchema = z.object({
+  name: z.string(),
+  url: z.string().or(
+    z.object({
+      name: z.string(),
+      value: z.string(),
+    }).array(),
+  ),
+});
+
+const VariantSchema = z.object({
   name: z.string().describe("Display name"),
   id: z.string().describe("Internal ID, used in the filename"),
   image: z.string()
@@ -49,43 +59,34 @@ const ExclusiveAddonVariantSchema = z.object({
     .optional(),
 });
 
-const ExclusiveAddonSchema = z.object({
+const VariantAddonSchema = z.object({
   name: z.string().describe("Display name"),
   id_pos: z.number().describe("Position of this addon in selected addons list"),
   apply_order: z.number().describe("Order in which to apply this addon"),
   default_variant: z.string().describe("Default (recommended) variant ID"),
-  variants: ExclusiveAddonVariantSchema.array(),
+  variants: VariantSchema.array(),
   license: ConditionalLicenseSchema.optional(),
 });
 
-const RegularAddonSchema = z.object({
-  name: z.string().describe("Display name"),
-  id: z.string().describe("Internal ID, used in the filename"),
-  default_enabled: z.boolean(),
-  required_mods: z.string().array().optional(),
-  minimum_minecraft_version: z.string().optional(),
+const BasicAddonSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  recommended: z.boolean(),
   url: z.string(),
+  description: z.string().optional(),
+
+  info: z.string().array().optional(),
+  links: AddonLinkSchema.array().optional(),
+
   branch: ConditionalBranchSchema.optional(),
   license: ConditionalLicenseSchema.optional(),
-});
-
-const ModAddonSchema = z.object({
-  name: z.string().describe("Display name"),
-  id: z.string().describe("Internal ID, used in the filename"),
-  default_enabled: z.boolean(),
-  modloader: z.union([z.string(), z.string().array()]),
-  url: z.string(),
-  links: z.object({
-    name: z.string(),
-    url: z.string(),
-  }).array(),
 });
 
 export const JavaAssetsSchema = z.object({
   templates: z.object({
     zips_path: z.string(),
     base_zip_name: z.string(),
-    exclusive_addon_zip_name: z.string(),
+    variant_addon_zip_name: z.string(),
     regular_addon_zip_name: z.string(),
     mod_addon_zip_name: z.string(),
     filename: z.string(),
@@ -93,11 +94,11 @@ export const JavaAssetsSchema = z.object({
   repos: z.object({
     base: JavaBaseRepoSchema.describe("Base repo information"),
     addons: z.object({
-      exclusive: ExclusiveAddonSchema.array()
+      exclusive: VariantAddonSchema.array()
         .describe("Addons that can override each other"),
-      regular: RegularAddonSchema.array()
+      regular: BasicAddonSchema.array()
         .describe("Regular addons which usually only add new content"),
-      mods: ModAddonSchema.array()
+      mods: BasicAddonSchema.array()
         .describe("Addons adding mods support"),
     }),
   }),

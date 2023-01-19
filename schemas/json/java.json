@@ -11,7 +11,7 @@
         "base_zip_name": {
           "type": "string"
         },
-        "exclusive_addon_zip_name": {
+        "variant_addon_zip_name": {
           "type": "string"
         },
         "regular_addon_zip_name": {
@@ -27,7 +27,7 @@
       "required": [
         "zips_path",
         "base_zip_name",
-        "exclusive_addon_zip_name",
+        "variant_addon_zip_name",
         "regular_addon_zip_name",
         "mod_addon_zip_name",
         "filename"
@@ -201,28 +201,68 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Display name"
-                  },
                   "id": {
-                    "type": "string",
-                    "description": "Internal ID, used in the filename"
+                    "type": "string"
                   },
-                  "default_enabled": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "recommended": {
                     "type": "boolean"
                   },
-                  "required_mods": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "info": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
-                  "minimum_minecraft_version": {
-                    "type": "string"
-                  },
-                  "url": {
-                    "type": "string"
+                  "links": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "value"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "url"
+                      ],
+                      "additionalProperties": false
+                    }
                   },
                   "branch": {
                     "anyOf": [
@@ -239,9 +279,9 @@
                   }
                 },
                 "required": [
-                  "name",
                   "id",
-                  "default_enabled",
+                  "name",
+                  "recommended",
                   "url"
                 ],
                 "additionalProperties": false
@@ -251,64 +291,7 @@
             "mods": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Display name"
-                  },
-                  "id": {
-                    "type": "string",
-                    "description": "Internal ID, used in the filename"
-                  },
-                  "default_enabled": {
-                    "type": "boolean"
-                  },
-                  "modloader": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    ]
-                  },
-                  "url": {
-                    "type": "string"
-                  },
-                  "links": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "url": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "url"
-                      ],
-                      "additionalProperties": false
-                    }
-                  }
-                },
-                "required": [
-                  "name",
-                  "id",
-                  "default_enabled",
-                  "modloader",
-                  "url",
-                  "links"
-                ],
-                "additionalProperties": false
+                "$ref": "#/properties/repos/properties/addons/properties/regular/items"
               },
               "description": "Addons adding mods support"
             }

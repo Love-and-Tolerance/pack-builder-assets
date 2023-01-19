@@ -2,7 +2,7 @@
   "templates": {
     "zips_path": "assets/zips/java/{name}.zip",
     "base_zip_name": "BASE",
-    "exclusive_addon_zip_name": "EXCLUSIVE_ADDON_{id_pos}_{variant}_{branch}",
+    "variant_addon_zip_name": "EXCLUSIVE_ADDON_{id_pos}_{variant}_{branch}",
     "regular_addon_zip_name": "REGULAR_ADDON_{id}_{branch}",
     "mod_addon_zip_name": "MOD_ADDON_{id}",
     "filename": "L-T_{version}-format.{format}-{ids}.zip"
@@ -121,15 +121,15 @@
         {
           "name": "Connected Textures",
           "id": "ct",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/Optifine-Addon"
         },
         {
           "name": "Villager Skin Pack",
           "id": "vsp",
-          "default_enabled": true,
+          "recommended": true,
           "required_mods": ["mlp"],
-          "minimum_minecraft_version": "1.19.3",
+          "info": ["1.19.3+"],
           "url": "https://github.com/Love-and-Tolerance/Villager-Skin-Pack",
           "license": [
             {
@@ -149,32 +149,32 @@
         {
           "name": "Classic",
           "id": "cl",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/Classic-Textures-Addon",
           "branch": [{ "trigger": "complex-models", "value": "complex-models" }]
         },
         {
           "name": "Bronydog",
           "id": "bd",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/Bronydog-Textures-Addon"
         },
         {
           "name": "Progress Bar Destroy Block",
           "id": "pbd",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/Progress-Bar-Destroy-Block"
         },
         {
           "name": "Ore Borders",
           "id": "ob",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/Ore-Borders"
         },
         {
           "name": "No Crosshair",
           "id": "nc",
-          "default_enabled": false,
+          "recommended": false,
           "url": "https://github.com/Love-and-Tolerance/No-Crosshair"
         }
       ],
@@ -182,16 +182,16 @@
         {
           "name": "Fabric",
           "id": "fb",
-          "default_enabled": true,
-          "modloader": "fabric",
+          "recommended": true,
+          "info": ["Fabric"],
           "url": "https://github.com/Love-and-Tolerance/Fabric-Mod-Support",
           "links": [{ "name": "Website", "url": "https://fabricmc.net/" }]
         },
         {
           "name": "Mine Little Pony",
           "id": "mlp",
-          "default_enabled": true,
-          "modloader": "fabric",
+          "recommended": true,
+          "info": ["Fabric"],
           "url": "https://github.com/Love-and-Tolerance/MineLittlePony-Mod-Support",
           "links": [
             { "name": "Website", "url": "https://minelittlepony-mod.com/" }
@@ -200,8 +200,8 @@
         {
           "name": "Unicopia",
           "id": "un",
-          "default_enabled": false,
-          "modloader": "fabric",
+          "recommended": false,
+          "info": ["Fabric"],
           "url": "https://github.com/Love-and-Tolerance/Unicopia-Mod-Support",
           "links": [
             { "name": "Website", "url": "https://github.com/Sollace/Unicopia" }
@@ -210,39 +210,46 @@
         {
           "name": "Trinkets",
           "id": "tk",
-          "default_enabled": false,
-          "modloader": "fabric",
+          "recommended": false,
+          "info": ["Fabric"],
           "url": "https://github.com/Love-and-Tolerance/Trinkets-Mod-Support",
           "links": [
-            { "name": "Modrinth", "url": "https://modrinth.com/mod/trinkets" },
             {
               "name": "CurseForge",
               "url": "https://www.curseforge.com/minecraft/mc-mods/trinkets"
-            }
+            },
+            { "name": "Modrinth", "url": "https://modrinth.com/mod/trinkets" }
           ]
         },
         {
           "name": "Create",
           "id": "crt",
-          "default_enabled": false,
-          "modloader": ["forge", "fabric"],
+          "recommended": false,
+          "info": ["Forge", "Fabric"],
           "url": "https://github.com/Love-and-Tolerance/Create-Mod-Support",
           "links": [
             {
-              "name": "Modrinth Forge",
-              "url": "https://modrinth.com/mod/create"
+              "name": "CurseForge",
+              "url": [
+                {
+                  "name": "Forge",
+                  "value": "https://www.curseforge.com/minecraft/mc-mods/create"
+                },
+                {
+                  "name": "Fabric",
+                  "value": "https://www.curseforge.com/minecraft/mc-mods/create-fabric"
+                }
+              ]
             },
             {
-              "name": "Modrinth Fabric",
-              "url": "https://modrinth.com/mod/create-fabric"
-            },
-            {
-              "name": "CurseForge Forge",
-              "url": "https://www.curseforge.com/minecraft/mc-mods/create"
-            },
-            {
-              "name": "CurseForge Fabric",
-              "url": "https://www.curseforge.com/minecraft/mc-mods/create-fabric"
+              "name": "Modrinth",
+              "url": [
+                { "name": "Forge", "value": "https://modrinth.com/mod/create" },
+                {
+                  "name": "Fabric",
+                  "value": "https://modrinth.com/mod/create-fabric"
+                }
+              ]
             }
           ]
         }
