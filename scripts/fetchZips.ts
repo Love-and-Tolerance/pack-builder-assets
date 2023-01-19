@@ -1,6 +1,6 @@
 import "console_colors";
 import { run } from "run_simple";
-import { JavaAssetsSchema } from "../schemas/zod/java.ts";
+import { BasicAddon, JavaAssetsSchema } from "../schemas/zod/java.ts";
 import { clean } from "./tasks/clean.ts";
 import { initRepo } from "./tasks/initRepo.ts";
 import { collectBranches } from "./utils/collectBranches.ts";
@@ -79,7 +79,7 @@ for (const addon of JAVA_ASSETS.repos.addons.exclusive) {
     console.info(`Processing variant "${variant.name}" ...`.cyan.text_bold);
 
     const branches = collectBranches(variant.branch);
-    const filenameTemplate = JAVA_ASSETS.templates.exclusive_addon_zip_name
+    const filenameTemplate = JAVA_ASSETS.templates.variant_addon_zip_name
       .replace("{id_pos}", addon.id_pos.toString())
       .replace("{variant}", variant.id);
 
@@ -92,37 +92,41 @@ for (const addon of JAVA_ASSETS.repos.addons.exclusive) {
   }
 }
 
-console.log("");
-console.info("Processing normal addons ...".blue.text_bold);
-
-for (const addon of JAVA_ASSETS.repos.addons.regular) {
+async function processBasicAddons(
+  type: string,
+  addons: BasicAddon[],
+  filenameTemplate: string,
+) {
   console.log("");
-  console.info(`Processing addon "${addon.name}" ...`.blue.text_bold);
+  console.info(`Processing ${type} addons ...`.blue.text_bold);
 
-  const branches = collectBranches(addon.branch);
-  const filenameTemplate = JAVA_ASSETS.templates.regular_addon_zip_name
-    .replace("{id}", addon.id);
+  for (const addon of addons) {
+    console.log("");
+    console.info(`Processing addon "${addon.name}" ...`.blue.text_bold);
 
-  const files = getAddonFiles(addon.license);
+    const branches = collectBranches(addon.branch);
+    filenameTemplate = filenameTemplate.replace("{id}", addon.id);
 
-  for (const branch of branches) {
-    const filename = filenameTemplate.replace("{branch}", branch);
-    await prepareRepo(filename, addon.url, branch, files);
+    const files = getAddonFiles(addon.license);
+
+    for (const branch of branches) {
+      const filename = filenameTemplate.replace("{branch}", branch);
+      await prepareRepo(filename, addon.url, branch, files);
+    }
   }
 }
 
-console.log("");
-console.info("Processing mod addons ...".blue.text_bold);
+await processBasicAddons(
+  "regular",
+  JAVA_ASSETS.repos.addons.regular,
+  JAVA_ASSETS.templates.regular_addon_zip_name,
+);
 
-for (const addon of JAVA_ASSETS.repos.addons.mods) {
-  console.log("");
-  console.info(`Processing addon "${addon.name}" ...`.blue.text_bold);
-
-  const filename = JAVA_ASSETS.templates.mod_addon_zip_name
-    .replace("{id}", addon.id);
-
-  await prepareRepo(filename, addon.url, "HEAD", "assets");
-}
+await processBasicAddons(
+  "mod",
+  JAVA_ASSETS.repos.addons.mods,
+  JAVA_ASSETS.templates.mod_addon_zip_name,
+);
 
 if (isProduction) {
   console.log("");
