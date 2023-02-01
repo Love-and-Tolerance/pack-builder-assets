@@ -105,12 +105,12 @@ async function processBasicAddons(
     console.info(`Processing addon "${addon.name}" ...`.blue.text_bold);
 
     const branches = collectBranches(addon.branch);
-    filenameTemplate = filenameTemplate.replace("{id}", addon.id);
+    const addonFilenameTemplate = filenameTemplate.replace("{id}", addon.id);
 
     const files = getAddonFiles(addon.license);
 
     for (const branch of branches) {
-      const filename = filenameTemplate.replace("{branch}", branch);
+      const filename = addonFilenameTemplate.replace("{branch}", branch);
       await prepareRepo(filename, addon.url, branch, files);
     }
   }
