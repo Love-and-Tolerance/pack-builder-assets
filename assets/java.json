@@ -119,6 +119,12 @@
       ],
       "regular": [
         {
+          "name": "Variant Textures",
+          "id": "vt",
+          "recommended": true,
+          "url": "https://github.com/Love-and-Tolerance/Variant-Textures"
+        },
+        {
           "name": "Connected Textures",
           "id": "ct",
           "recommended": false,
