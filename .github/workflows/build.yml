@@ -2,6 +2,7 @@
 name: rolling build
 on:
 - workflow_dispatch
+- push
 
 concurrency:
   group: rolling-build
