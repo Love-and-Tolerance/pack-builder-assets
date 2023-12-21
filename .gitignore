@@ -1,1 +1,4 @@
 .temp/
+node_modules
+bun.lockb
+release-builder/builder
