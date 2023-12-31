@@ -5,11 +5,13 @@ import { execSync } from "child_process";
 import * as plib from "./lib.ts";
 let reposDir = "./builder/repos";
 
+import * as java from "../assets/java.json"
+import * as bedrock from "../assets/bedrock.json"
+
 const timestamp = 1671944442;
+let changelog: string;
 
 async function mane() {
-	const java = await getJsonData("java");
-	const bedrock = await getJsonData("bedrock");
 	const javaVersion = java.repos.base.version;
 	const javaFormat = java.repos.base.pack_format;
 	const bedrockVersion = bedrock.repos.base.version;
@@ -36,12 +38,7 @@ async function mane() {
 		undefined,
 		optimize
 	);
-}
-
-async function getJsonData(version: string) {
-	return await fetch(
-		`https://raw.githubusercontent.com/Love-and-Tolerance/pack-builder-assets/mane/assets/${version}.json`
-	).then((res) => res.json());
+	plib.writeFile("./changelog.md", changelog);
 }
 
 function checkInstalled(programs: string[]) {
@@ -172,20 +169,26 @@ function generatePacks(
 						let notes = plib.executeCommandReturn(
 							`git show --no-patch --format="format:%b" ${hash}`
 						);
-						change = change.charAt(0).toUpperCase() + change.slice(1);
+						change =
+							change.charAt(0).toUpperCase() + change.slice(1);
 						change = `- ${change}`;
 						if (notes !== "") {
 							notes = notes
 								.trim()
 								.split("\n")
-								.map((c) => c.charAt(0).toUpperCase() + c.slice(1))
-								.map((c) => `  - ${c}`)
+								.map(
+									(c) =>
+										c.charAt(0).toUpperCase() + c.slice(1)
+								)
+								.map((c) => `	- ${c}`)
 								.join("\n");
 							change = `${change}\n${notes}`;
 						}
 						return change;
 					});
-				console.log(commits);
+				if (commits.length > 0) {
+					changelog = `${changelog}\n\n## ${pack.name}\n${commits}`;
+				}
 			}
 			if (optimize) {
 				optimizeImages(pack.name);
