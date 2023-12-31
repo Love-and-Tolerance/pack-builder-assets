@@ -164,10 +164,10 @@ function generatePacks(
 					.map((c) => {
 						const hash = c.split("\n")[0];
 						let change = plib.executeCommandReturn(
-							`git show --no-patch --format="format:%s" ${hash}`
+							`git show --no-patch --format=%s ${hash}`
 						);
 						let notes = plib.executeCommandReturn(
-							`git show --no-patch --format="format:%b" ${hash}`
+							`git show --no-patch --format=%b ${hash}`
 						);
 						change =
 							change.charAt(0).toUpperCase() + change.slice(1);
@@ -176,11 +176,13 @@ function generatePacks(
 							notes = notes
 								.trim()
 								.split("\n")
+								.filter((c) => c !== "")
 								.map(
 									(c) =>
 										c.charAt(0).toUpperCase() + c.slice(1)
 								)
 								.map((c) => `	- ${c}`)
+								.filter((c) => c !== "")
 								.join("\n");
 							change = `${change}\n${notes}`;
 						}
