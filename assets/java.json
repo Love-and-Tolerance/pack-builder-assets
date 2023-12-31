@@ -227,26 +227,29 @@
             { "name": "Modrinth", "url": "https://modrinth.com/mod/trinkets" }
           ]
         },
-		  {
-			 "name": "AppleSkin",
-			 "id": "as",
-			 "recommended": false,
-			 "info": ["Fabric"],
-			 "url": "https://github.com/Love-and-Tolerance/AppleSkin-Mod-Support",
-			 "links": [
-			   { "name": "Modrinth", "url": "https://modrinth.com/mod/appleskin" }
-			 ]
-		  },
-		  {
-			 "name": "Eating Animations",
-			 "id": "ea",
-			 "recommended": false,
-			 "info": ["Fabric"],
-			 "url": "https://github.com/Love-and-Tolerance/EatingAnimations-Mod-Support",
-			 "links": [
-			   { "name": "Modrinth", "url": "https://modrinth.com/mod/eating-animation" }
-			 ]
-		  },
+        {
+          "name": "AppleSkin",
+          "id": "as",
+          "recommended": false,
+          "info": ["Fabric"],
+          "url": "https://github.com/Love-and-Tolerance/AppleSkin-Mod-Support",
+          "links": [
+            { "name": "Modrinth", "url": "https://modrinth.com/mod/appleskin" }
+          ]
+        },
+        {
+          "name": "Eating Animations",
+          "id": "ea",
+          "recommended": false,
+          "info": ["Fabric"],
+          "url": "https://github.com/Love-and-Tolerance/EatingAnimations-Mod-Support",
+          "links": [
+            {
+              "name": "Modrinth",
+              "url": "https://modrinth.com/mod/eating-animation"
+            }
+          ]
+        },
         {
           "name": "Create",
           "id": "crt",
