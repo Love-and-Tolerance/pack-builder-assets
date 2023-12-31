@@ -2,8 +2,10 @@ import fs from "fs";
 import path from "path";
 import { simpleGit as git, CleanOptions } from "simple-git";
 import { execSync } from "child_process";
-
+import * as plib from "./lib.ts";
 let reposDir = "./builder/repos";
+
+const timestamp = 1671944442;
 
 async function mane() {
 	const java = await getJsonData("java");
@@ -32,13 +34,13 @@ async function mane() {
 		"mcpack",
 		"bedrock",
 		undefined,
-		optimize,
+		optimize
 	);
 }
 
 async function getJsonData(version: string) {
 	return await fetch(
-		`https://raw.githubusercontent.com/Love-and-Tolerance/pack-builder-assets/mane/assets/${version}.json`,
+		`https://raw.githubusercontent.com/Love-and-Tolerance/pack-builder-assets/mane/assets/${version}.json`
 	).then((res) => res.json());
 }
 
@@ -145,7 +147,7 @@ function generatePacks(
 	extension: string,
 	platform: string,
 	format?: string,
-	optimize?: boolean,
+	optimize?: boolean
 ) {
 	packs.forEach(function (pack) {
 		process.chdir(path.resolve(reposDir, pack.name));
@@ -157,6 +159,34 @@ function generatePacks(
 			} else {
 				branch = pack.defaultbranch;
 			}
+			if (!optimize) {
+				const commits = plib
+					.executeCommandReturn('git log --format="format:%H\n%ct\n"')
+					.split("\n\n")
+					.filter((c) => Number(c.split("\n")[1]) > timestamp)
+					.map((c) => {
+						const hash = c.split("\n")[0];
+						let change = plib.executeCommandReturn(
+							`git show --no-patch --format="format:%s" ${hash}`
+						);
+						let notes = plib.executeCommandReturn(
+							`git show --no-patch --format="format:%b" ${hash}`
+						);
+						change = change.charAt(0).toUpperCase() + change.slice(1);
+						change = `- ${change}`;
+						if (notes !== "") {
+							notes = notes
+								.trim()
+								.split("\n")
+								.map((c) => c.charAt(0).toUpperCase() + c.slice(1))
+								.map((c) => `  - ${c}`)
+								.join("\n");
+							change = `${change}\n${notes}`;
+						}
+						return change;
+					});
+				console.log(commits);
+			}
 			if (optimize) {
 				optimizeImages(pack.name);
 			}
@@ -167,7 +197,7 @@ function generatePacks(
 				extension,
 				platform,
 				format,
-				!optimize,
+				!optimize
 			);
 		}
 		checkoutBranch(pack.defaultbranch);
@@ -182,7 +212,7 @@ function generateZip(
 	extension: string,
 	platform: string,
 	format?: string,
-	source?: boolean,
+	source?: boolean
 ) {
 	if (!source && platform == "java") {
 		const filename = `L_T-${version}-format.${format}-${name}-${branch}.${extension}`;
