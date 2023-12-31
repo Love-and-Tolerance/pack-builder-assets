@@ -9,9 +9,9 @@
   },
   "repos": {
     "base": {
-      "mc_versions": "1.19.3",
-      "pack_format": "12",
-      "version": "1.3.0",
+      "mc_versions": "1.20.4",
+      "pack_format": "18",
+      "version": "1.4.0",
       "url": "https://github.com/Love-and-Tolerance/Love-and-Tolerance"
     },
     "addons": {
@@ -119,6 +119,12 @@
       ],
       "regular": [
         {
+          "name": "Variant Textures",
+          "id": "vt",
+          "recommended": true,
+          "url": "https://github.com/Love-and-Tolerance/Variant-Textures"
+        },
+        {
           "name": "Connected Textures",
           "id": "ct",
           "recommended": false,
@@ -221,6 +227,26 @@
             { "name": "Modrinth", "url": "https://modrinth.com/mod/trinkets" }
           ]
         },
+		  {
+			 "name": "AppleSkin",
+			 "id": "as",
+			 "recommended": false,
+			 "info": ["Fabric"],
+			 "url": "https://github.com/Love-and-Tolerance/AppleSkin-Mod-Support",
+			 "links": [
+			   { "name": "Modrinth", "url": "https://modrinth.com/mod/appleskin" }
+			 ]
+		  },
+		  {
+			 "name": "Eating Animations",
+			 "id": "ea",
+			 "recommended": false,
+			 "info": ["Fabric"],
+			 "url": "https://github.com/Love-and-Tolerance/EatingAnimations-Mod-Support",
+			 "links": [
+			   { "name": "Modrinth", "url": "https://modrinth.com/mod/eating-animation" }
+			 ]
+		  },
         {
           "name": "Create",
           "id": "crt",
