@@ -10,7 +10,7 @@
   "repos": {
     "base": {
       "mc_versions": "1.20.4",
-      "pack_format": "18",
+      "pack_format": "22",
       "version": "1.4.0",
       "url": "https://github.com/Love-and-Tolerance/Love-and-Tolerance"
     },
