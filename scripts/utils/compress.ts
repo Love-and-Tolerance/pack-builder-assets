@@ -2,8 +2,8 @@ import { relative } from "path";
 import { run } from "run_simple";
 
 export async function compress(
-  dir: string,
-  archiveName: string,
+  src: string,
+  dest: string,
   files?: string | string[],
 ): Promise<void> {
   if (files === undefined) {
@@ -12,7 +12,7 @@ export async function compress(
     files = [files];
   }
 
-  await run(["zip", "-r9q", relative(dir, archiveName), ...files], {
-    cwd: dir,
+  await run(["zip", "-r9q", relative(src, dest), ...files], {
+    cwd: src,
   });
 }

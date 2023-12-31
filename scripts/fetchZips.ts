@@ -27,8 +27,9 @@ console.info("Reading json files ...".blue.text_bold);
 
 const JAVA_ASSETS = readJson("assets/java.json", JavaAssetsSchema);
 
-const ZIPS_DIR = JAVA_ASSETS.templates.zips_path.replace("{name}.zip", "");
+const ZIPS_DIR = ".temp/zips";
 const REPOS_DIR = ".temp/repos";
+const JAVA_ZIPS_DIR = JAVA_ASSETS.templates.zips_path.replace("{name}.zip", "");
 
 const zipStack: ZipInfo[] = [];
 
@@ -44,7 +45,7 @@ async function prepareRepo(
   zipStack.push({ name, files });
 }
 
-clean(ZIPS_DIR, REPOS_DIR);
+clean(`${ZIPS_DIR}/${JAVA_ZIPS_DIR}`, REPOS_DIR);
 
 console.log("");
 console.info("Processing repos ...".blue.text_bold);
@@ -137,12 +138,14 @@ if (isProduction) {
 console.log("");
 console.info("Creating zips ...".blue.text_bold);
 for (const info of zipStack) {
-  const dir = `${REPOS_DIR}/${info.name}`;
-  const name = JAVA_ASSETS.templates.zips_path.replace("{name}", info.name);
+  const src = `${REPOS_DIR}/${info.name}`;
 
-  console.info(`${dir} -> ${name} ...`.black.text_bold);
+  let dest = JAVA_ASSETS.templates.zips_path.replace("{name}", info.name);
+  dest = `${ZIPS_DIR}/${dest}`;
 
-  await compress(dir, name, info.files);
+  console.info(`${src} -> ${dest} ...`.black.text_bold);
+
+  await compress(src, dest, info.files);
 }
 
 console.log("");

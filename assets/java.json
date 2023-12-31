@@ -1,6 +1,6 @@
 {
   "templates": {
-    "zips_path": "assets/zips/java/{name}.zip",
+    "zips_path": "java/{name}.zip",
     "base_zip_name": "BASE",
     "variant_addon_zip_name": "EXCLUSIVE_ADDON_{id_pos}_{variant}_{branch}",
     "regular_addon_zip_name": "REGULAR_ADDON_{id}_{branch}",
